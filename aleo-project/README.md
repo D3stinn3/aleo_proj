@@ -1,90 +1,75 @@
-# React + Aleo + Leo
+# Aleo High-Level Auction dApp
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/AleoHQ/sdk/tree/testnet3/create-aleo-app/template-react-leo)
+This project is a decentralized auction application built on the Aleo blockchain using React and the Leo programming language. It allows users to participate in auctions by placing bids, resolving auctions, and claiming prizes, all while leveraging Aleo's privacy-preserving blockchain capabilities.
 
-This template provides a minimal setup to get React and Aleo working in Vite
-with HMR and some ESLint rules.
+## Features
 
-This template includes a Leo program that is loaded by the web app located in
-the `helloworld` directory.
+- **Account Management**: Generate Aleo accounts with associated public addresses.
+- **Bidding System**: Place bids on auctions securely.
+- **Auction Resolution**: Resolve auctions to determine winners.
+- **Prize Claiming**: Claim prizes for winning bids.
+- **Contract Deployment**: Deploy auction contracts to the Aleo blockchain.
 
-Note: Webpack is currently used for production builds due to a
-[bug](https://github.com/vitejs/vite/issues/13367) with Vite related to nested
-workers.
+## Getting Started
 
-### Start in development mode
+### Prerequisites
+
+Before, ensure you have met the following requirements:
+
+- Node.js and npm installed on your machine.
+- Access to the Aleo blockchain network.
+- A valid Aleo account and private key.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/aleo-high-level-auction.git
+   cd aleo-high-level-auction
+   ```
+
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Follow the instructions to install Leo [here](https://github.com/AleoHQ/leo).
+
+### Running the Application
+
+To start the application in development mode, run:
 
 ```bash
 npm run dev
 ```
 
-Your app should be running on http://localhost:5173/
+Your app should be accessible at [http://localhost:5173/](http://localhost:5173/).
 
-### Build Leo program
+### Key Functions
 
-1. Copy the `helloworld/.env.example` to `helloworld/.env` (this will be ignored
-   by Git):
+- **Generate Account**: Creates a new Aleo account and displays the private key and public address.
+- **Place Bid**: Allows users to place a bid on an auction.
+- **Resolve Auction**: Determines the winner(s) of the auction based on the highest bid(s).
+- **Claim Prize**: Allows the winning bidder to claim their prize.
+- **Deploy Auction Contract**: Deploys a new auction contract to the Aleo blockchain.
 
-   ```bash
-   cd helloworld
-   cp .env.example .env
-   ```
+### Usage
 
-2. Replace `PRIVATE_KEY=user1PrivateKey` in the `.env` with your own key (you
-   can use an existing one or generate your own at https://aleo.tools/account)
+1. **Generate an Aleo Account**: Click the "Click to generate account" button to create a new Aleo account.
+2. **Place a Bid**: Ensure you have generated an account, then click "Place a Bid" to participate in the auction.
+3. **Resolve Auction**: Click "Resolve Auction" to determine the winner(s) of the auction.
+4. **Claim Prize**: If you are the winning bidder, click "Claim Prize" to receive your prize.
+5. **Deploy Auction Contract**: Click "Deploy Auction Contract" to deploy a new auction contract.
 
-3. Follow instructions to install Leo here: https://github.com/AleoHQ/leo
+### Notes
 
-4. You can edit `helloworld/src/main.leo` and run `leo run` to compile and update the
-   Aleo instructions under `build` which are loaded by the web app.
+- Make sure to replace placeholder addresses such as `"aleo1..."` with actual Aleo addresses.
+- Adjust paths and configurations as necessary to match your development environment.
 
-## Deploy program from web app
+## Contributing
 
-> [!WARNING]  
-> This is for demonstration purposes or local testing only, in production applications you
-> should avoid building a public facing web app with private key information
+Contributions are welcome! Please read the contributing guidelines before submitting pull requests.
 
-Information on generating a private key, seeding a wallet with funds, and finding a spendable record can be found here
-if you are unfamiliar: https://developer.aleo.org/testnet/getting_started/deploy_execute_demo
+## License
 
-Aleo programs deployed require unique names, make sure to edit the program's name to something unique in `helloworld/src/main.leo`, `helloworld/program.json`, rename `helloworld/inputs/helloworld.in` and rebuild.
-
-1. In the `worker.js` file modify the privateKey to be an account with available
-   funds
-
-   ```js
-   // Use existing account with funds
-   const account = new Account({
-     privateKey: "user1PrivateKey",
-   });
-   ```
-
-2. (Optional) Provide a fee record manually (located in commented code within `worker.js`)
-
-   If you do not provide a manual fee record, the SDK will attempt to scan for a record starting at the latest block. A simple way to speed this up would be to make a public transaction to this account right before deploying.
-   
-3. Run the web app and hit the deploy button
-
-## Production deployment
-
-### Build
-
-`npm run build`
-
-Upload `dist` folder to your host of choice.
-
-### ⚠️ Header warnings
-
-`DOMException: Failed to execute 'postMessage' on 'Worker': SharedArrayBuffer transfer requires self.crossOriginIsolated`
-
-If you get a warning similar to this when deploying your application, you need
-to make sure your web server is configured with the following headers:
-
-```
-Cross-Origin-Opener-Policy: same-origin
-Cross-Origin-Embedder-Policy: require-corp
-```
-
-We've included a `_headers` file that works with some web hosts (e.g. Netlify)
-but depending on your host / server setup you may need to configure the headers
-manually.
+This project is licensed under the MIT License.
